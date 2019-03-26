@@ -85,8 +85,8 @@ extension MapViewController: CLLocationManagerDelegate {
         switch status {
         case .denied, .restricted:
             print("acces denied or restricted")
-        //case .notDetermined:
-            //locationManager.requestAlwaysAuthorization()
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
         default:
             manager.startUpdatingLocation()
         }
