@@ -13,11 +13,16 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShareLocationGM" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="3ft-Mr-suw"/>
+                    <navigationItem key="navigationItem" id="3ft-Mr-suw">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="ry8-6c-HR2"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="search" destination="ry8-6c-HR2" id="Ffp-Gg-EUm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="241"/>
+            <point key="canvasLocation" x="118" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rPQ-UW-uG3">

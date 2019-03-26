@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class MapViewController: UIViewController {
+class ViewController: UIViewController {
     
     //@IBOutlet weak var GoogleMapsContainer: UIView!
     var locationManager = CLLocationManager()
@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
         // Initialize the location manager.
 
         locationManager = CLLocationManager()
@@ -52,7 +52,7 @@ class MapViewController: UIViewController {
         
         // Add the map to the view, hide it until we&#39;ve got a location update.
         view.addSubview(mapView)
-        mapView.isHidden = true
+        mapView.isHidden = false
         /*
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -66,6 +66,7 @@ class MapViewController: UIViewController {
  */
     }
 
+    @IBOutlet weak var search: UIBarButtonItem!
     //@IBAction func searchWithAddress(_ sender: Any) {
     //}
     override func didReceiveMemoryWarning() {
@@ -79,7 +80,7 @@ class MapViewController: UIViewController {
 
 
 }
-extension MapViewController: CLLocationManagerDelegate {
+extension ViewController: CLLocationManagerDelegate {
     // Handle authorization for the location manager.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -91,4 +92,15 @@ extension MapViewController: CLLocationManagerDelegate {
             manager.startUpdatingLocation()
         }
     }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude)\(locValue.longitude)")
+        //let userlocation = locations.last
+        let camera = GMSCameraPosition.camera(withLatitude: locValue.latitude,
+                                              longitude: locValue.longitude,
+                                              zoom: zoomLevel)
+        self.mapView? = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+       
+    }
+
 }
